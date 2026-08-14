@@ -11,23 +11,26 @@ type LoginFormProps = {
 const LoginForm = ({ tipo }: LoginFormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [cargando, setCargando] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setError("");
+    setCargando(true);
+
     try {
       const response = await authService.login(email, password);
-
-      console.log("Login exitoso:", response);
 
       const token = response.data.token;
       const usuario = response.data.usuario;
 
       // Validar el tipo de acceso
       if (tipo === "admin" && usuario.rol !== "admin") {
-        console.error(
+        setError(
           "Este usuario no tiene permisos para acceder como administrador."
         );
         return;
@@ -38,7 +41,7 @@ const LoginForm = ({ tipo }: LoginFormProps) => {
         usuario.rol !== "vendedor" &&
         usuario.rol !== "inventario"
       ) {
-        console.error(
+        setError(
           "Este usuario no tiene permisos para acceder al área operativa."
         );
         return;
@@ -47,9 +50,6 @@ const LoginForm = ({ tipo }: LoginFormProps) => {
       // Guardar sesión solamente después de validar el rol
       localStorage.setItem("token", token);
       localStorage.setItem("usuario", JSON.stringify(usuario));
-
-      console.log("Token guardado");
-      console.log("Usuario:", usuario);
 
       // Redireccionar según el rol
       if (usuario.rol === "admin") {
@@ -64,7 +64,9 @@ const LoginForm = ({ tipo }: LoginFormProps) => {
         navigate("/dashboard/inventario");
       }
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
+      setError("Correo o contraseña incorrectos.");
+    } finally {
+      setCargando(false);
     }
   };
 
@@ -115,11 +117,18 @@ const LoginForm = ({ tipo }: LoginFormProps) => {
               />
             </div>
 
+            {error && (
+              <p className="login-error">
+                {error}
+              </p>
+            )}
+
             <button
               type="submit"
               className="button-login"
+              disabled={cargando}
             >
-              Iniciar sesión
+              {cargando ? "Iniciando sesión..." : "Iniciar sesión"}
             </button>
 
             <a href="#" className="forgot-password">
