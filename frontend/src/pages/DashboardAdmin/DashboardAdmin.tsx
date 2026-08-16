@@ -1,10 +1,11 @@
-import LogoutButton from "../../components/LogoutButton";
+import Sidebar from "../../components/dashboardAdmin/Sidebar";
+import "./DashboardAdmin.css";
+
 const DashboardAdmin = () => {
   return (
-    <main>
-      <h1>Dashboard Administrador</h1>
-      <p>Bienvenido a Orbix.</p>
-      <LogoutButton />
+    <main className="main">
+      <Sidebar />
+
     </main>
   );
 };
