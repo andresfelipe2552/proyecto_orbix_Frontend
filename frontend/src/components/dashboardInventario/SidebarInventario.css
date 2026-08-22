@@ -1,18 +1,18 @@
 .sidebar-inventario {
-  width: 250px;
+  width: 230px;
   height: 100vh;
-  background-color: #0f172a;
+  background-color: #0b1c34;
   position: fixed;
   top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
-  color: #94a3b8;
+  color: #919daa;
 }
 
 .sidebar-titulo-inv {
-  padding: 0 20px 30px;
+  border-bottom: 1px solid #1c2b3d;
+  padding: 25px 35px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -22,12 +22,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: white;
+  color: aliceblue;
 }
 
 .logo-icon {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   background-color: #10b981;
   border-radius: 50%;
   display: flex;
@@ -36,70 +36,68 @@
 }
 
 .logo-inner-circle {
-  width: 10px;
-  height: 10px;
-  border: 2px solid white;
+  width: 8px;
+  height: 8px;
+  border: 2px solid aliceblue;
   border-radius: 50%;
 }
 
 .siti-inv {
   margin: 0;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .badge-inventario {
   background-color: rgba(16, 185, 129, 0.2);
   color: #10b981;
-  padding: 4px 10px;
+  padding: 2px 8px;
   border-radius: 12px;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
   width: fit-content;
-  margin-left: 40px;
+  margin-left: 34px;
 }
 
 .navegacion-inv {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 0 15px;
+  padding: 10px 0;
   flex: 1;
 }
 
 .navp-inv {
-  font-size: 12px;
-  color: #64748b;
-  margin: 0 0 10px 10px;
+  font-size: 10px;
+  color: #919daa;
+  padding: 4px 16px;
+  margin: 0 0 5px 0;
   font-weight: 600;
-  letter-spacing: 1px;
 }
 
 .navegacion-inv a {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 12px 15px;
+  gap: 20px;
+  padding: 6px 14px 6px 20px;
   text-decoration: none;
-  color: #cbd5e1;
-  border-radius: 8px;
+  color: #919daa;
+  font-size: 15px;
   transition: all 0.2s;
-  font-weight: 500;
 }
 
 .navegacion-inv a:hover {
   background-color: rgba(255, 255, 255, 0.05);
-  color: white;
+  color: aliceblue;
 }
 
 .navegacion-inv a.active {
-  background-color: #0f3630;
   color: #10b981;
 }
 
 .sidebar-footer-inv {
   padding: 20px;
-  border-top: 1px solid #1e293b;
+  border-top: 1px solid #1c2b3d;
   display: flex;
   flex-direction: column;
   gap: 15px;
