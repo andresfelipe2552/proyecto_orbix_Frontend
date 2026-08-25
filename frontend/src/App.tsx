@@ -1,12 +1,17 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 
+import NotFoundRedirect from "./routes/NotFoundRedirect";
+
 import LoginAdmin from "./pages/LoginAdmin/LoginAdmin";
+
 import LoginOpera from "./pages/LoginOpera/LoginOpera";
 
 import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
+
 import DashboardCajero from "./pages/DashboardCajero/DashboardCajero";
+
 import DashboardInventario from "./pages/DashboardInventario/DashboardInventario";
 
 function App() {
@@ -14,11 +19,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Logins */}
+
         <Route path="/login/admin" element={<LoginAdmin />} />
 
         <Route path="/login/opera" element={<LoginOpera />} />
 
         {/* Dashboards */}
+
         <Route
           path="/dashboard/admin"
           element={
@@ -29,7 +36,7 @@ function App() {
         />
 
         <Route
-          path="/dashboard/cajero"
+          path="/dashboard/vendedor"
           element={
             <ProtectedRoute roles={["vendedor"]}>
               <DashboardCajero />
@@ -46,8 +53,9 @@ function App() {
           }
         />
 
-        {/* Ruta por defecto */}
-        <Route path="*" element={<Navigate to="/login/admin" replace />} />
+        {/* Ruta no encontrada */}
+
+        <Route path="*" element={<NotFoundRedirect />} />
       </Routes>
     </BrowserRouter>
   );
