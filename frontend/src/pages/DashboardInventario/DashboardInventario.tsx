@@ -1,6 +1,7 @@
+import { useState, useEffect } from "react";
 import { Search, Bell } from "lucide-react";
 import SidebarInventario from "../../components/dashboardInventario/SidebarInventario";
-import CardsInventario from "../../components/dashboardInventario/CardsInventario";
+import CardsInventario, { CardsInventarioProps } from "../../components/dashboardInventario/CardsInventario";
 import StockBajoTable from "../../components/dashboardInventario/StockBajoTable";
 import StockChart from "../../components/dashboardInventario/StockChart";
 import UltimosMovimientos from "../../components/dashboardInventario/UltimosMovimientos";
@@ -8,6 +9,34 @@ import UltimosMovimientos from "../../components/dashboardInventario/UltimosMovi
 import "./DashboardInventario.css";
 
 const DashboardInventario = () => {
+  // Estado local para almacenar las métricas dinámicas
+  const [dashboardMetrics, setDashboardMetrics] = useState<CardsInventarioProps['metrics']>({
+    valorTotal: 0,
+    totalProductos: 0,
+    productosStockBajo: 0,
+    sinStock: 0,
+    movimientosHoy: { total: 0, entradas: 0, salidas: 0 }
+  });
+
+  // Simular la carga de datos desde el backend (API)
+  useEffect(() => {
+    // Aquí iría el fetch real a la API (ej: /api/inventario/dashboard-stats)
+    const fetchMetrics = async () => {
+      // Usamos un timeout para simular la petición de red
+      setTimeout(() => {
+        setDashboardMetrics({
+          valorTotal: 523330,
+          totalProductos: 12,
+          productosStockBajo: 3,
+          sinStock: 0,
+          movimientosHoy: { total: 7, entradas: 4, salidas: 3 }
+        });
+      }, 500); // 500ms de retraso
+    };
+
+    fetchMetrics();
+  }, []);
+
   return (
     <main className="main-inv">
       <SidebarInventario />
@@ -39,7 +68,8 @@ const DashboardInventario = () => {
           </div>
           
           <div className="dashboard-content">
-            <CardsInventario />
+            {/* Pasamos los datos dinámicos como props */}
+            <CardsInventario metrics={dashboardMetrics} />
             <StockBajoTable />
             
             <div className="bottom-row-inv">
