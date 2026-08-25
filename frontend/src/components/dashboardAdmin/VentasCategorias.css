@@ -4,9 +4,10 @@
   border-radius: 15px;
   padding: 25px;
   margin: 0;
-  height: 510px;
+  height: 550px;
   box-sizing: border-box;
 }
+
 .categoria-header h3 {
   margin: 0;
   font-size: 22px;
@@ -19,13 +20,13 @@
 
 .grafica-donut {
   width: 100%;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .categorias-lista {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 .categoria-item {

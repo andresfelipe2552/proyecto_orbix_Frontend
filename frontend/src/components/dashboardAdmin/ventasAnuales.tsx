@@ -9,7 +9,6 @@ import {
 } from "recharts";
 import "./VentasAnuales.css"
 
-import "./ventasAnuales.css";
 
 const Ventasanuales = () => {
   const datos = [
