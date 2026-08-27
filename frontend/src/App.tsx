@@ -14,6 +14,7 @@ import DashboardCajero from "./pages/DashboardCajero/DashboardCajero";
 
 import DashboardInventario from "./pages/DashboardInventario/DashboardInventario";
 import InventarioAdmin from "./pages/DashboardAdmin/InventarioAdmin/InventarioAdmin";
+import VentasAdmin from "./pages/DashboardAdmin/VentasAdmin/VentasAdmin";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/login/opera" element={<LoginOpera />} />
 
         {/* Dashboards */}
+        {/* Dashboards para administrador */}
 
         <Route
           path="/dashboard/admin"
@@ -43,6 +45,16 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/dashboard/admin/ventas"
+          element={
+            <ProtectedRoute roles={["admin"]}>
+              <VentasAdmin />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Dashboards para el vendedor*/}
 
         <Route
           path="/dashboard/vendedor"
@@ -52,6 +64,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* Dashboards para el inventario*/}
 
         <Route
           path="/dashboard/inventario"

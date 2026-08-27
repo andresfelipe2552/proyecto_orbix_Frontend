@@ -1,0 +1,226 @@
+/* Contenedor exterior */
+
+.tabla-ventas-wrapper {
+  width: 100%;
+  padding: 0px 30px 0px 30px;
+  box-sizing: border-box;
+}
+
+
+/* Contenedor real de la tabla */
+
+.tabla-ventas-contenedor {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #d9e0e8;
+  border-radius: 16px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+/* Tabla */
+
+.tabla-ventas {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+
+/* Encabezado */
+
+.tabla-ventas thead {
+  background-color: #f0f4f8;
+}
+
+.tabla-ventas th {
+  height: 52px;
+  padding: 0 20px;
+
+  text-align: left;
+
+  color: #58708c;
+  font-size: 14px;
+  font-weight: 600;
+
+  border-bottom: 1px solid #d9e0e8;
+
+  white-space: nowrap;
+}
+
+
+/* Celdas */
+
+.tabla-ventas td {
+  height: 68px;
+  padding: 0 20px;
+
+  color: #58708c;
+  font-size: 15px;
+
+  border-bottom: 1px solid #d9e0e8;
+
+  vertical-align: middle;
+}
+
+.tabla-ventas tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tabla-ventas tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+
+/* Pedido */
+
+.pedido-venta {
+  color: #087c9c !important;
+
+  font-family: monospace;
+  font-size: 16px !important;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+
+/* Cliente */
+
+.cliente-venta {
+  color: #071b2f !important;
+
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+
+/* Vendedor */
+
+.vendedor-venta {
+  color: #71859c !important;
+}
+
+
+/* Items */
+
+.items-venta {
+  text-align: center;
+}
+
+
+/* Monto */
+
+.monto-venta {
+  color: #071b2f !important;
+
+  font-family: monospace;
+  font-size: 17px !important;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* Pago */
+
+.pago-efectivo,
+.pago-transferencia {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 110px;
+  height: 32px;
+
+  padding: 0 13px;
+
+  box-sizing: border-box;
+
+  border-radius: 18px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* Efectivo */
+
+.pago-efectivo {
+  background-color: #fff0c2;
+  color: #a45100;
+}
+
+
+/* Transferencia */
+
+.pago-transferencia {
+  background-color: #eee8ff;
+  color: #6832d8;
+}
+
+
+/* Estado */
+
+.estado-venta {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 12px;
+
+  border-radius: 18px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* Completada */
+
+.estado-completada {
+  background-color: #d9f7eb;
+  color: #087c61;
+}
+
+
+/* En proceso */
+
+.estado-en-proceso {
+  background-color: #dfeaff;
+  color: #2864c7;
+}
+
+
+/* Pendiente */
+
+.estado-pendiente {
+  background-color: #fff0c2;
+  color: #a45100;
+}
+
+
+/* Cancelada */
+
+.estado-cancelada {
+  background-color: #ffe0e0;
+  color: #c93636;
+}
+
+
+/* Sin resultados */
+
+.ventas-sin-resultados {
+  height: 100px !important;
+
+  text-align: center;
+
+  color: #71859c !important;
+}
