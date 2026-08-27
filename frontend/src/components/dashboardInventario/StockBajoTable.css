@@ -83,3 +83,11 @@
 .proveedor {
   color: #64748b;
 }
+
+/* Responsive Design */
+.table-container {
+  overflow-x: auto;
+}
+.stock-table {
+  min-width: 600px; /* Asegura que la tabla no se aplaste en movil */
+}

@@ -2,54 +2,71 @@ import {
   LayoutDashboard,
   Package,
   ArrowRightLeft,
-  LogOut
+  LogOut,
+  X
 } from "lucide-react";
+import { NavLink } from "react-router-dom";
 import "./SidebarInventario.css";
 
-const SidebarInventario = () => {
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const SidebarInventario = ({ isOpen, onClose }: SidebarProps) => {
   return (
-    <aside className="sidebar-inventario">
-      <div className="sidebar-titulo-inv">
-        <div className="logo-container">
-          <div className="logo-icon">
-            <span className="logo-inner-circle"></span>
-          </div>
-          <h2 className="siti-inv">Orbix</h2>
-        </div>
-        <span className="badge-inventario">Inventario</span>
-      </div>
+    <>
+      {/* Overlay oscuro para cerrar al hacer clic afuera en móviles */}
+      {isOpen && <div className="sidebar-overlay" onClick={onClose}></div>}
       
-      <nav className="navegacion-inv">
-        <p className="navp-inv">MENÚ</p>
-        <a href="/dashboard/inventario" className="active">
-          <LayoutDashboard size={22} />
-          <span>Dashboard</span>
-        </a>
-
-        <a href="/dashboard/inventario/productos">
-          <Package size={22} />
-          <span>Productos</span>
-        </a>
-        <a href="/dashboard/inventario/movimientos">
-          <ArrowRightLeft size={22} />
-          <span>Movimientos</span>
-        </a>
-      </nav>
-
-      <div className="sidebar-footer-inv">
-        <div className="user-profile-inv">
-          <div className="user-avatar-inv">LH</div>
-          <div className="user-info-inv">
-            <p className="user-name-inv">Luis Herrera</p>
-            <p className="user-role-inv">Inventario</p>
+      <aside className={`sidebar-inventario ${isOpen ? 'open' : ''}`}>
+        <div className="sidebar-titulo-inv">
+          <div className="logo-container">
+            <div className="logo-icon">
+              <span className="logo-inner-circle"></span>
+            </div>
+            <h2 className="siti-inv">Orbix</h2>
           </div>
+          <span className="badge-inventario">Inventario</span>
+          {/* Botón X visible solo en móvil */}
+          <button className="close-sidebar-btn" onClick={onClose}>
+            <X size={20} />
+          </button>
         </div>
-        <button className="btn-cambiar-perfil">
-          <LogOut size={18} />
-          <span>Cambiar perfil</span>
-        </button>
-      </div>
-    </aside>
+        
+        <nav className="navegacion-inv">
+          <p className="navp-inv">MENÚ</p>
+          <NavLink to="/dashboard/inventario" end className={({ isActive }) => (isActive ? "active" : "")} onClick={onClose}>
+            <LayoutDashboard size={22} />
+            <span>Dashboard</span>
+          </NavLink>
+
+          <NavLink to="/dashboard/inventario/productos" className={({ isActive }) => (isActive ? "active" : "")} onClick={onClose}>
+            <Package size={22} />
+            <span>Productos</span>
+          </NavLink>
+          
+          <NavLink to="/dashboard/inventario/movimientos" className={({ isActive }) => (isActive ? "active" : "")} onClick={onClose}>
+            <ArrowRightLeft size={22} />
+            <span>Movimientos</span>
+          </NavLink>
+        </nav>
+
+        <div className="sidebar-footer-inv">
+          <div className="user-profile-inv">
+            <div className="user-avatar-inv">LH</div>
+            <div className="user-info-inv">
+              <p className="user-name-inv">Luis Herrera</p>
+              <p className="user-role-inv">Inventario</p>
+            </div>
+          </div>
+          <button className="btn-cambiar-perfil">
+            <LogOut size={18} />
+            <span>Cambiar perfil</span>
+          </button>
+        </div>
+      </aside>
+    </>
   );
 };
 

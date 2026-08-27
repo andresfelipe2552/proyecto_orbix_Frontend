@@ -57,3 +57,19 @@
 .yellow-text { color: #f59e0b; }
 .red-text { color: #ef4444; }
 .blue-text { color: #0ea5e9; }
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .cards-inv-container {
+    flex-wrap: wrap;
+  }
+  .card-inv {
+    flex: 1 1 calc(50% - 20px);
+    min-width: 200px;
+  }
+}
+@media (max-width: 576px) {
+  .card-inv {
+    flex: 1 1 100%;
+  }
+}

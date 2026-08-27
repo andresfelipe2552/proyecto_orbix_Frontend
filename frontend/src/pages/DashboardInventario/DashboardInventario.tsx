@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
-import { Search, Bell } from "lucide-react";
+import { Search, Bell, Menu } from "lucide-react";
 import SidebarInventario from "../../components/dashboardInventario/SidebarInventario";
 import CardsInventario, { CardsInventarioProps } from "../../components/dashboardInventario/CardsInventario";
-import StockBajoTable from "../../components/dashboardInventario/StockBajoTable";
-import StockChart from "../../components/dashboardInventario/StockChart";
-import UltimosMovimientos from "../../components/dashboardInventario/UltimosMovimientos";
+import StockBajoTable, { ProductoStockBajo } from "../../components/dashboardInventario/StockBajoTable";
+import StockChart, { StockChartData } from "../../components/dashboardInventario/StockChart";
+import UltimosMovimientos, { Movimiento } from "../../components/dashboardInventario/UltimosMovimientos";
 
 import "./DashboardInventario.css";
 
 const DashboardInventario = () => {
-  // Estado local para almacenar las métricas dinámicas
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Estado para el sidebar móvil
+
   const [dashboardMetrics, setDashboardMetrics] = useState<CardsInventarioProps['metrics']>({
     valorTotal: 0,
     totalProductos: 0,
@@ -18,11 +20,12 @@ const DashboardInventario = () => {
     movimientosHoy: { total: 0, entradas: 0, salidas: 0 }
   });
 
-  // Simular la carga de datos desde el backend (API)
+  const [stockBajo, setStockBajo] = useState<ProductoStockBajo[]>([]);
+  const [chartData, setChartData] = useState<StockChartData[]>([]);
+  const [movimientos, setMovimientos] = useState<Movimiento[]>([]);
+
   useEffect(() => {
-    // Aquí iría el fetch real a la API (ej: /api/inventario/dashboard-stats)
-    const fetchMetrics = async () => {
-      // Usamos un timeout para simular la petición de red
+    const fetchDashboardData = async () => {
       setTimeout(() => {
         setDashboardMetrics({
           valorTotal: 523330,
@@ -31,23 +34,51 @@ const DashboardInventario = () => {
           sinStock: 0,
           movimientosHoy: { total: 7, entradas: 4, salidas: 3 }
         });
-      }, 500); // 500ms de retraso
+
+        setStockBajo([
+          { producto: "Zapatillas Nike Air Max 270", stockActual: 3, stockMin: 10, deficit: -7, proveedor: "Nike Distribuidora" },
+          { producto: "Impresora HP LaserJet Pro", stockActual: 2, stockMin: 3, deficit: -1, proveedor: "HP Argentina" },
+          { producto: "Teclado Mecánico Logitech G413", stockActual: 4, stockMin: 5, deficit: -1, proveedor: "Logitech Corp" }
+        ]);
+
+        setChartData([
+          { name: "Electrónica", valor: 210000 },
+          { name: "Ropa", valor: 65000 },
+          { name: "Hogar", valor: 85000 },
+          { name: "Alimentos", valor: 38200 }
+        ]);
+
+        setMovimientos([
+          { tipo: "Entrada", producto: "Laptop Lenovo IdeaPad 5", detalle: "+10 u. · Luis Herrera", fecha: "28 Jul", iconType: "in" },
+          { tipo: "Salida", producto: "Smartphone Samsung Galaxy A55", detalle: "-3 u. · Ana Torres", fecha: "28 Jul", iconType: "out" },
+          { tipo: "Salida", producto: "Monitor Samsung 27\" FHD", detalle: "-2 u. · Diego Ruiz", fecha: "27 Jul", iconType: "out" },
+          { tipo: "Ajuste", producto: "Zapatillas Nike Air Max 270", detalle: "-4 u. · Luis Herrera", fecha: "27 Jul", iconType: "adj" },
+          { tipo: "Entrada", producto: "Arroz Largo Fino x5kg", detalle: "+50 u. · Luis Herrera", fecha: "26 Jul", iconType: "in" }
+        ]);
+
+        setIsLoading(false);
+      }, 2000); 
     };
 
-    fetchMetrics();
+    fetchDashboardData();
   }, []);
 
   return (
     <main className="main-inv">
-      <SidebarInventario />
+      <SidebarInventario isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
       <div className="contenido-dashboard-inv">
         <div className="barra-superior-inv">
-          <p className="breadcrumbs-inv">
-            <span className="bread-orbix">Orbix</span> <span className="bread-sep">/</span>{" "}
-            <span className="bread-inventario">Inventario</span> <span className="bread-sep">/</span>{" "}
-            <span className="bread-dashboard">Dashboard</span>
-          </p>
+          <div className="left-acciones-inv">
+            <button className="menu-toggle-inv" onClick={() => setIsSidebarOpen(true)}>
+              <Menu size={24} />
+            </button>
+            <p className="breadcrumbs-inv">
+              <span className="bread-orbix">Orbix</span> <span className="bread-sep">/</span>{" "}
+              <span className="bread-inventario">Inventario</span> <span className="bread-sep">/</span>{" "}
+              <span className="bread-dashboard">Dashboard</span>
+            </p>
+          </div>
 
           <div className="acciones-superiores-inv">
             <form className="buscar-inv">
@@ -68,13 +99,12 @@ const DashboardInventario = () => {
           </div>
           
           <div className="dashboard-content">
-            {/* Pasamos los datos dinámicos como props */}
-            <CardsInventario metrics={dashboardMetrics} />
-            <StockBajoTable />
+            <CardsInventario metrics={dashboardMetrics} isLoading={isLoading} />
+            <StockBajoTable data={stockBajo} isLoading={isLoading} />
             
             <div className="bottom-row-inv">
-              <StockChart />
-              <UltimosMovimientos />
+              <StockChart data={chartData} isLoading={isLoading} />
+              <UltimosMovimientos data={movimientos} isLoading={isLoading} />
             </div>
           </div>
         </div>
