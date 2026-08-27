@@ -18,8 +18,8 @@
   background-color: #f0f4f8;
   border-bottom: 1px solid #d9e0e8;
   color: #64748b;
-  font-weight: bold;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .tabla-productos-encabezado span {
@@ -29,7 +29,12 @@
 .tabla-productos-fila {
   min-height: 95px;
   border-bottom: 1px solid #d9e0e8;
-  font-size: 17px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.tabla-productos-fila:hover {
+  background-color: #f8fafc;
 }
 
 .tabla-productos-fila:last-child {
@@ -47,10 +52,12 @@
 
 .producto-nombre {
   color: #0f172a;
+  font-weight: 400;
 }
 
 .producto-categoria {
   color: #64748b;
+  font-weight: 400;
 }
 
 .producto-precio {
@@ -60,7 +67,7 @@
 
 .producto-stock {
   color: #0f172a;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .producto-stock.stock-bajo {

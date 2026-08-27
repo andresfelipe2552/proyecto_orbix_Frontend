@@ -6,9 +6,7 @@ import Sidebar from "../../../components/dashboardAdmin/Sidebar";
 
 import { Search, Bell, Plus } from "lucide-react";
 
-
 import BuscarProductos from "../../../components/dashboardAdmin/InventarioAdmin/BuscarProductos";
-
 import TablaProductos from "../../../components/dashboardAdmin/InventarioAdmin/TablaProductos";
 import Advertencia from "../../../components/dashboardAdmin/InventarioAdmin/Advertencia";
 
@@ -109,9 +107,11 @@ const InventarioAdmin = () => {
       categoriaSeleccionada === "Todas" ||
       producto.categoria === categoriaSeleccionada;
 
-    const coincideBusqueda = producto.nombre
-      .toLowerCase()
-      .includes(textoBusqueda.toLowerCase());
+    const texto = textoBusqueda.toLowerCase().trim();
+
+    const coincideBusqueda =
+      producto.nombre.toLowerCase().includes(texto) ||
+      producto.codigo.toLowerCase().includes(texto);
 
     return coincideCategoria && coincideBusqueda;
   });
@@ -121,6 +121,7 @@ const InventarioAdmin = () => {
       <Sidebar />
 
       <div className="inventario-contenido">
+
         <div className="inventario-barra-superior">
           <p>
             <span className="inventario-orbix">Orbix</span> /{" "}
@@ -131,14 +132,20 @@ const InventarioAdmin = () => {
           <div className="inventario-acciones-superiores">
             <form className="inventario-buscar">
               <Search size={20} />
-              <input type="text" placeholder="Buscar..." />
+
+              <input
+                type="text"
+                placeholder="Buscar..."
+              />
             </form>
 
             <div className="inventario-notifi">
               <Bell size={20} />
             </div>
 
-            <div className="inventario-usuario">VO</div>
+            <div className="inventario-usuario">
+              VO
+            </div>
           </div>
         </div>
 
@@ -146,7 +153,9 @@ const InventarioAdmin = () => {
           <div>
             <h2>Inventario</h2>
 
-            <p className="inventario-fecha">12 productos 3 con stock bajo</p>
+            <p className="inventario-fecha">
+              12 productos 3 con stock bajo
+            </p>
           </div>
 
           <button className="inventario-button-agregar">
@@ -164,7 +173,10 @@ const InventarioAdmin = () => {
           onBusquedaChange={setTextoBusqueda}
         />
 
-        <TablaProductos productos={productosFiltrados} />
+        <TablaProductos
+          productos={productosFiltrados}
+        />
+
       </div>
     </main>
   );
