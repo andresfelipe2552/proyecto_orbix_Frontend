@@ -1,0 +1,68 @@
+.tabla-productos {
+  margin: 0 30px;
+  background-color: #ffffff;
+  border: 1px solid #d9e0e8;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.tabla-productos-encabezado,
+.tabla-productos-fila {
+  display: grid;
+  grid-template-columns: 123px 300px 155px 170px 1fr;
+  align-items: center;
+}
+
+.tabla-productos-encabezado {
+  height: 58px;
+  background-color: #f0f4f8;
+  border-bottom: 1px solid #d9e0e8;
+  color: #64748b;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.tabla-productos-encabezado span {
+  padding: 0 25px;
+}
+
+.tabla-productos-fila {
+  min-height: 95px;
+  border-bottom: 1px solid #d9e0e8;
+  font-size: 17px;
+}
+
+.tabla-productos-fila:last-child {
+  border-bottom: none;
+}
+
+.tabla-productos-fila > span {
+  padding: 0 25px;
+}
+
+.producto-codigo {
+  color: #087c9c;
+  font-weight: 500;
+}
+
+.producto-nombre {
+  color: #0f172a;
+}
+
+.producto-categoria {
+  color: #64748b;
+}
+
+.producto-precio {
+  color: #0f172a;
+  font-weight: 500;
+}
+
+.producto-stock {
+  color: #0f172a;
+  font-weight: bold;
+}
+
+.producto-stock.stock-bajo {
+  color: #ef4444;
+}
