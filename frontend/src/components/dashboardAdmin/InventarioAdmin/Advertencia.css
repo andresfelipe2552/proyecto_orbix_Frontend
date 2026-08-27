@@ -1,0 +1,25 @@
+.advertencia {
+  background-color: #fff7ed;
+  height: 45px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-left: 30px;
+  margin: 10px 30px 30px 30px;
+}
+
+.advertencia-logo {
+  color: #f59e0b;
+  display: flex;
+  align-items: center;
+}
+
+.advertencia-parrafo {
+  margin: 0;
+  color: #92400e;
+}
+
+.advertencia-parrafo span {
+  font-weight: bold;
+}
